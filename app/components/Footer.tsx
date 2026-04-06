@@ -25,7 +25,7 @@ export default function Footer() {
             <span className="text-gradient">seu projeto</span>?
           </h2>
           <p className="mt-6 text-zinc-400 leading-relaxed">
-            Preencha o formulário e nosso time vai entrar em contato em até 24h
+            Preencha o formulário e nosso time vai entrar em contato
             para agendar uma conversa sobre sua ideia.
           </p>
 
@@ -39,14 +39,14 @@ export default function Footer() {
               <span className="text-sm">contato@magents.dev</span>
             </div>
 
-            <div className="flex items-center gap-4 text-zinc-300">
+            {/* <div className="flex items-center gap-4 text-zinc-300">
               <div className="w-11 h-11 rounded-xl bg-linear-to-br from-brand-500 to-brand-400 flex items-center justify-center text-white shrink-0 shadow-md shadow-brand-600/20">
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                   <path d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.21 2.2Z" />
                 </svg>
               </div>
               <span className="text-sm">(11) 99999-0000</span>
-            </div>
+            </div> */}
 
             <div className="flex items-center gap-4 text-zinc-300">
               <div className="w-11 h-11 rounded-xl bg-linear-to-br from-brand-600 to-brand-500 flex items-center justify-center text-white shrink-0 shadow-md shadow-brand-600/20">
@@ -55,7 +55,7 @@ export default function Footer() {
                   <path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                 </svg>
               </div>
-              <span className="text-sm">São Paulo, Brasil</span>
+              <span className="text-sm">Igrejinha - RS, Brasil</span>
             </div>
           </div>
         </div>

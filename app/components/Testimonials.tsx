@@ -2,7 +2,7 @@ const testimonials = [
   {
     name: "Ana Silva",
     role: "CTO, TechCorp",
-    quote: "A Magents entregou nosso MVP em 4 semanas com qualidade impressionante. Hoje o produto gera mais de R$2M por ano em receita.",
+    quote: "A Magents entregou nossa solução em 4 semanas com qualidade impressionante. Hoje o produto gera mais de R$2M por ano em receita.",
     gradient: "from-brand-600 to-brand-500",
   },
   {

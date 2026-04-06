@@ -54,7 +54,7 @@ export default function Contact() {
             <span className="text-gradient">seu projeto</span>?
           </h2>
           <p className="mt-6 text-zinc-400 leading-relaxed">
-            Preencha o formulário e nosso time vai entrar em contato em até 24h
+            Preencha o formulário e nosso time vai entrar em contato
             para agendar uma conversa sobre sua ideia.
           </p>
 

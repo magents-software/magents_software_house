@@ -42,7 +42,7 @@ export default function Hero() {
           </h1>
 
           <p className="mt-6 text-base sm:text-lg text-zinc-400 leading-relaxed max-w-lg mx-auto lg:mx-0">
-            Do MVP à escala — entregamos aplicações web, mobile e APIs com
+            Entregamos aplicações web, mobile e APIs com
             código limpo, arquitetura sólida e velocidade real.
           </p>
 
@@ -63,7 +63,7 @@ export default function Hero() {
           </div>
 
           {/* Metrics */}
-          <div className="mt-14 flex items-center justify-center lg:justify-start gap-10">
+          {/* <div className="mt-14 flex items-center justify-center lg:justify-start gap-10">
             {metrics.map((m, i) => (
               <div key={m.label} className="flex items-center gap-4">
                 <div>
@@ -75,7 +75,7 @@ export default function Hero() {
                 )}
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
 
         {/* ── RIGHT: esfera + cards flutuantes ── */}

@@ -6,7 +6,7 @@ const services = [
       </svg>
     ),
     title: "Desenvolvimento Web",
-    description: "Aplicações modernas com React, Next.js e Angular. Dashboards, plataformas e sistemas web robustos e responsivos.",
+    description: "Aplicações modernas com React e Next.js. Dashboards, plataformas e sistemas web robustos e responsivos.",
     gradient: "from-brand-600 to-brand-500",
   },
   {
@@ -16,7 +16,7 @@ const services = [
       </svg>
     ),
     title: "Apps Mobile",
-    description: "Aplicativos nativos e cross-platform com React Native e Flutter para iOS e Android com excelente experiência.",
+    description: "Aplicativos nativos e cross-platform com React Native para iOS e Android com excelente experiência.",
     gradient: "from-brand-500 to-brand-400",
   },
   {
@@ -26,7 +26,7 @@ const services = [
       </svg>
     ),
     title: "APIs & Backend",
-    description: "APIs RESTful e GraphQL com Node.js, Python e Go. Arquitetura escalável, microsserviços e integrações.",
+    description: "APIs RESTful com Node.js e Python. Arquitetura escalável, microsserviços e integrações.",
     gradient: "from-brand-600 to-brand-500",
   },
   {
