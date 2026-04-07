@@ -15,7 +15,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50">
+    <header className="fixed top-0 left-0 right-0 z-50 px-5">
       <nav className="glass mt-4 max-w-6xl mx-auto rounded-2xl px-6 py-4 flex items-center justify-between">
         <a href="#" className="flex items-center">
           <MagentsLogo className="text-2xl" />
@@ -52,7 +52,7 @@ export default function Navbar() {
         </button>
 
         {open && (
-          <div className="absolute top-20 left-4 right-4 glass rounded-2xl p-6 md:hidden">
+          <div className="absolute top-20 left-4 right-4 rounded-2xl p-6 md:hidden" style={{ background: 'rgba(15, 15, 20, 0.92)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.1)' }}>
             <ul className="flex flex-col items-center gap-5 text-zinc-300">
               {navLinks.map((l) => (
                 <li key={l.href}>
