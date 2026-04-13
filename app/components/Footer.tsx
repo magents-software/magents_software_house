@@ -32,7 +32,7 @@ export default function Footer() {
                   <path d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                 </svg>
               </div>
-              <span className="text-sm">contato@magents.dev</span>
+              <span className="text-sm">magents@magents.com.br</span>
             </div>
 
             {/* <div className="flex items-center gap-4 text-zinc-300">
@@ -53,6 +53,22 @@ export default function Footer() {
               </div>
               <span className="text-sm">Igrejinha - RS, Brasil</span>
             </div>
+
+            <a
+              href="https://instagram.com/magents_software"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-4 text-zinc-300 hover:text-white transition-colors"
+            >
+              <div className="w-11 h-11 rounded-xl bg-linear-to-br from-brand-600 to-brand-500 flex items-center justify-center text-white shrink-0 shadow-md shadow-brand-600/20">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+              </div>
+              <span className="text-sm">@magents_software</span>
+            </a>
           </div>
         </div>
 
