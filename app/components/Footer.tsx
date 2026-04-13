@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
-import MagentsLogo from "./MagentsLogo";
+import Image from "next/image";
 import { submitLead } from "../actions/contact";
 
 export default function Footer() {
@@ -12,7 +12,11 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16">
         {/* Left - Info */}
         <div>
-          <MagentsLogo className="text-3xl mb-8 block" />
+          <div className="flex items-center gap-3 mb-8">
+            <span className="font-black text-2xl tracking-tight text-gradient" style={{ fontFamily: "'Arial Black', 'Arial Bold', Arial, sans-serif" }}>
+              MAGENTS
+            </span>
+          </div>
           <span className="text-brand-400 text-sm font-semibold uppercase tracking-widest">
             Contato
           </span>
