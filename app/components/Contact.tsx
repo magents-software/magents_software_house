@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { supabase } from "../lib/supabase";
+import { useActionState } from "react";
+import { submitLead } from "../actions/contact";
 
 const contactInfo = [
   {
@@ -35,29 +35,7 @@ const contactInfo = [
 ];
 
 export default function Contact() {
-  const [sent, setSent] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [form, setForm] = useState({ name: "", email: "", subject: "", description: "" });
-
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  }
-
-  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
-
-    const { error: sbError } = await supabase.from("leads").insert([form]);
-
-    setLoading(false);
-    if (sbError) {
-      setError("Erro ao enviar. Tente novamente.");
-    } else {
-      setSent(true);
-    }
-  }
+  const [state, formAction, pending] = useActionState(submitLead, null);
 
   return (
     <section id="contato" className="bg-zinc-900 py-28 px-6">
@@ -90,7 +68,7 @@ export default function Contact() {
 
         {/* Right - Form */}
         <div>
-          {sent ? (
+          {state?.success ? (
             <div className="glass rounded-2xl p-10 flex flex-col items-center justify-center text-center h-full">
               <div className="w-16 h-16 rounded-full bg-linear-to-br from-brand-600 to-brand-400 flex items-center justify-center mb-4 shadow-lg shadow-brand-600/30">
                 <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -101,13 +79,11 @@ export default function Contact() {
               <p className="mt-2 text-zinc-400">Obrigado pelo contato. Te respondemos em breve.</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form action={formAction} className="space-y-5">
               <div className="grid sm:grid-cols-2 gap-5">
                 <input
                   required
                   name="name"
-                  value={form.name}
-                  onChange={handleChange}
                   placeholder="Nome"
                   className="w-full px-4 py-3.5 rounded-xl bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
                 />
@@ -115,35 +91,31 @@ export default function Contact() {
                   required
                   name="email"
                   type="email"
-                  value={form.email}
-                  onChange={handleChange}
                   placeholder="Email"
                   className="w-full px-4 py-3.5 rounded-xl bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
                 />
               </div>
               <input
                 name="subject"
-                value={form.subject}
-                onChange={handleChange}
                 placeholder="Assunto"
                 className="w-full px-4 py-3.5 rounded-xl bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
               />
               <textarea
                 required
                 name="description"
-                value={form.description}
-                onChange={handleChange}
                 rows={5}
                 placeholder="Conte sobre seu projeto..."
                 className="w-full px-4 py-3.5 rounded-xl bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm resize-none"
               />
-              {error && <p className="text-red-400 text-sm">{error}</p>}
+              {state && !state.success && (
+                <p className="text-red-400 text-sm">{state.error}</p>
+              )}
               <button
                 type="submit"
-                disabled={loading}
+                disabled={pending}
                 className="w-full py-4 rounded-xl bg-gradient-brand text-white font-semibold text-sm transition-all hover:opacity-90 hover:scale-[1.01] disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100"
               >
-                {loading ? "Enviando..." : "Enviar Mensagem"}
+                {pending ? "Enviando..." : "Enviar Mensagem"}
               </button>
             </form>
           )}

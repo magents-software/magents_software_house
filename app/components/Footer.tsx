@@ -1,15 +1,11 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useActionState } from "react";
 import MagentsLogo from "./MagentsLogo";
+import { submitLead } from "../actions/contact";
 
 export default function Footer() {
-  const [sent, setSent] = useState(false);
-
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setSent(true);
-  }
+  const [state, formAction, pending] = useActionState(submitLead, null);
 
   return (
     <footer id="contato" className="bg-zinc-900 py-28 px-6">
@@ -62,7 +58,7 @@ export default function Footer() {
 
         {/* Right - Form */}
         <div>
-          {sent ? (
+          {state?.success ? (
             <div className="glass rounded-2xl p-10 flex flex-col items-center justify-center text-center h-full min-h-[400px]">
               <div className="w-16 h-16 rounded-full bg-linear-to-br from-brand-600 to-brand-400 flex items-center justify-center mb-4 shadow-lg shadow-brand-600/30">
                 <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -73,15 +69,17 @@ export default function Footer() {
               <p className="mt-2 text-zinc-400">Obrigado pelo contato. Te respondemos em breve.</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form action={formAction} className="space-y-5">
               <div className="grid sm:grid-cols-2 gap-5">
                 <input
                   required
+                  name="name"
                   placeholder="Nome"
                   className="w-full px-4 py-3.5 rounded-xl bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
                 />
                 <input
                   required
+                  name="email"
                   type="email"
                   placeholder="Email"
                   className="w-full px-4 py-3.5 rounded-xl bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
@@ -89,22 +87,29 @@ export default function Footer() {
               </div>
 
               <input
+                name="subject"
                 placeholder="Assunto"
                 className="w-full px-4 py-3.5 rounded-xl bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
               />
 
               <textarea
                 required
+                name="description"
                 rows={5}
                 placeholder="Conte sobre seu projeto..."
                 className="w-full px-4 py-3.5 rounded-xl bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm resize-none"
               />
 
+              {state && !state.success && (
+                <p className="text-red-400 text-sm">{state.error}</p>
+              )}
+
               <button
                 type="submit"
-                className="w-full py-4 rounded-xl bg-gradient-brand text-white font-semibold text-sm transition-all hover:opacity-90"
+                disabled={pending}
+                className="w-full py-4 rounded-xl bg-gradient-brand text-white font-semibold text-sm transition-all hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Enviar Mensagem
+                {pending ? "Enviando..." : "Enviar Mensagem"}
               </button>
             </form>
           )}
