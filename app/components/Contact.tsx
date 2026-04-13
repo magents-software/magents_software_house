@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState } from "react";
+import { supabase } from "../lib/supabase";
 
 const contactInfo = [
   {
@@ -35,10 +36,27 @@ const contactInfo = [
 
 export default function Contact() {
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [form, setForm] = useState({ name: "", email: "", subject: "", description: "" });
 
-  function handleSubmit(e: FormEvent) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSent(true);
+    setLoading(true);
+    setError(null);
+
+    const { error: sbError } = await supabase.from("leads").insert([form]);
+
+    setLoading(false);
+    if (sbError) {
+      setError("Erro ao enviar. Tente novamente.");
+    } else {
+      setSent(true);
+    }
   }
 
   return (
@@ -87,31 +105,45 @@ export default function Contact() {
               <div className="grid sm:grid-cols-2 gap-5">
                 <input
                   required
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
                   placeholder="Nome"
                   className="w-full px-4 py-3.5 rounded-xl bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
                 />
                 <input
                   required
+                  name="email"
                   type="email"
+                  value={form.email}
+                  onChange={handleChange}
                   placeholder="Email"
                   className="w-full px-4 py-3.5 rounded-xl bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
                 />
               </div>
               <input
+                name="subject"
+                value={form.subject}
+                onChange={handleChange}
                 placeholder="Assunto"
                 className="w-full px-4 py-3.5 rounded-xl bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
               />
               <textarea
                 required
+                name="description"
+                value={form.description}
+                onChange={handleChange}
                 rows={5}
                 placeholder="Conte sobre seu projeto..."
                 className="w-full px-4 py-3.5 rounded-xl bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm resize-none"
               />
+              {error && <p className="text-red-400 text-sm">{error}</p>}
               <button
                 type="submit"
-                className="w-full py-4 rounded-xl bg-gradient-brand text-white font-semibold text-sm transition-all hover:opacity-90 hover:scale-[1.01]"
+                disabled={loading}
+                className="w-full py-4 rounded-xl bg-gradient-brand text-white font-semibold text-sm transition-all hover:opacity-90 hover:scale-[1.01] disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100"
               >
-                Enviar Mensagem
+                {loading ? "Enviando..." : "Enviar Mensagem"}
               </button>
             </form>
           )}
