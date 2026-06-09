@@ -13,7 +13,7 @@ const jsonLd = {
   "@type": "Organization",
   name: "Magents Software House",
   url: "https://magents.com.br",
-  logo: "https://magents.com.br/assets/logo.png",
+  logo: "https://magents.com.br/assets/icon.png",
   contactPoint: {
     "@type": "ContactPoint",
     email: "magents@magents.com.br",
