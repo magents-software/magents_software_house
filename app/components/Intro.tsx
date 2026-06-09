@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import MagentsLogo from "./MagentsLogo";
+import MagentsSimbol from "./MagentsSimbol";
 
 export default function Intro() {
   const [phase, setPhase] = useState<"visible" | "fading" | "done">("visible");
@@ -50,24 +50,12 @@ export default function Intro() {
         borderRadius: "50%",
       }} />
 
-      {/* Esfera girando - animate-spin com duração customizada */}
-      <div
-        className="animate-spin"
-        style={{ animationDuration: "7s", borderRadius: "50%", overflow: "hidden" }}
-      >
-        <Image
-          src="/magents_logo.png"
-          alt=""
-          width={260}
-          height={260}
-          style={{ borderRadius: "50%", display: "block" }}
-          priority
-        />
-      </div>
+      {/* Símbolo animado */}
+      <MagentsSimbol style={{ width: 260, height: 260 }} />
 
       {/* Logo fixo abaixo */}
       <div style={{ marginTop: 40 }}>
-        <MagentsLogo className="text-5xl tracking-widest" />
+        <MagentsLogo height={44} />
       </div>
     </div>
   );

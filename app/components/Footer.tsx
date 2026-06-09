@@ -1,8 +1,8 @@
 "use client";
 
 import { useActionState } from "react";
-import Image from "next/image";
 import { submitLead } from "../actions/contact";
+import MagentsLogo from "./MagentsLogo";
 
 export default function Footer() {
   const [state, formAction, pending] = useActionState(submitLead, null);
@@ -13,9 +13,7 @@ export default function Footer() {
         {/* Left - Info */}
         <div>
           <div className="flex items-center gap-3 mb-8">
-            <span className="font-black text-2xl tracking-tight text-gradient" style={{ fontFamily: "'Arial Black', 'Arial Bold', Arial, sans-serif" }}>
-              MAGENTS
-            </span>
+            <MagentsLogo height={26} />
           </div>
           <span className="text-brand-400 text-sm font-semibold uppercase tracking-widest">
             Contato
@@ -79,7 +77,7 @@ export default function Footer() {
         {/* Right - Form */}
         <div>
           {state?.success ? (
-            <div className="glass rounded-2xl p-10 flex flex-col items-center justify-center text-center h-full min-h-[400px]">
+            <div className="glass rounded-2xl p-10 flex flex-col items-center justify-center text-center h-full min-h-100">
               <div className="w-16 h-16 rounded-full bg-linear-to-br from-brand-600 to-brand-400 flex items-center justify-center mb-4 shadow-lg shadow-brand-600/30">
                 <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                   <path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />

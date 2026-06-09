@@ -18,7 +18,7 @@ export default function Navbar() {
     <header className="fixed top-0 left-0 right-0 z-50 px-5">
       <nav className="glass mt-4 max-w-6xl mx-auto rounded-2xl px-6 py-4 flex items-center justify-between">
         <a href="#" className="flex items-center">
-          <MagentsLogo className="text-2xl" />
+          <MagentsLogo height={26} />
         </a>
 
         <ul className="hidden md:flex items-center gap-8 text-sm text-zinc-300">

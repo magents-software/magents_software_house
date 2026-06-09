@@ -1,16 +1,5 @@
-import Image from "next/image";
+import MagentsSimbol from "./MagentsSimbol";
 
-const metrics = [
-  { value: "50+", label: "Projetos entregues" },
-  { value: "30+", label: "Clientes ativos" },
-  { value: "5+",  label: "Anos de mercado" },
-];
-
-const floatingCards = [
-  { icon: "⚡", text: "Deploy em produção" },
-  { icon: "🛡️", text: "99.9% uptime" },
-  { icon: "📱", text: "Mobile-first" },
-];
 
 export default function Hero() {
   return (
@@ -78,26 +67,53 @@ export default function Hero() {
           </div> */}
         </div>
 
-        {/* ── RIGHT: esfera + cards flutuantes ── */}
+        {/* ── RIGHT: símbolo + cards flutuantes ── */}
         <div className="relative flex items-center justify-center h-105 lg:h-130">
 
-          {/* Anel luminoso atrás da esfera */}
-          <div className="absolute w-72 h-72 lg:w-96 lg:h-96 rounded-full border border-brand-500/20 animate-pulse-slow" />
-          <div className="absolute w-56 h-56 lg:w-72 lg:h-72 rounded-full border border-brand-600/30 animate-pulse-slow" style={{ animationDelay: "1s" }} />
+          {/* Glow blob direto atrás do símbolo */}
+          <div className="absolute w-56 h-56 lg:w-64 lg:h-64 rounded-full bg-brand-500/10 blur-3xl" />
 
-          {/* Esfera girando */}
+          {/* Anéis orbitais */}
+          <div className="absolute w-64 h-64 lg:w-80 lg:h-80 rounded-full border border-brand-500/25 animate-pulse-slow" />
+          <div className="absolute w-80 h-80 lg:w-96 lg:h-96 rounded-full border border-brand-500/15 animate-pulse-slow" style={{ animationDelay: "1.2s" }} />
+          <div className="absolute w-96 h-96 lg:w-md lg:h-md rounded-full border border-brand-600/10 animate-pulse-slow" style={{ animationDelay: "2.4s" }} />
+
+          {/* Partícula orbital 1 — giro suave */}
           <div
-            className="animate-spin relative z-10"
-            style={{ animationDuration: "12s" }}
+            className="absolute inset-0 flex items-center justify-center animate-spin"
+            style={{ animationDuration: "20s" }}
           >
-            <Image
-              src="/magents_logo.png"
-              alt="Magents sphere"
-              width={300}
-              height={300}
-              className="w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-full drop-shadow-[0_0_60px_rgba(46,137,152,0.5)]"
-              priority
+            <div
+              className="absolute w-2 h-2 rounded-full bg-brand-400/80 blur-[1px]"
+              style={{ top: "50%", left: "50%", transform: "translate(-50%,-50%) translateX(158px)" }}
             />
+          </div>
+
+          {/* Partícula orbital 2 — sentido inverso, raio maior */}
+          <div
+            className="absolute inset-0 flex items-center justify-center animate-spin"
+            style={{ animationDuration: "32s", animationDirection: "reverse" }}
+          >
+            <div
+              className="absolute w-1.5 h-1.5 rounded-full bg-brand-300/60"
+              style={{ top: "50%", left: "50%", transform: "translate(-50%,-50%) translateX(178px)" }}
+            />
+          </div>
+
+          {/* Partícula orbital 3 — desfasada */}
+          <div
+            className="absolute inset-0 flex items-center justify-center animate-spin"
+            style={{ animationDuration: "26s", animationDelay: "-9s" }}
+          >
+            <div
+              className="absolute w-2 h-2 rounded-full bg-brand-500/70 blur-[1px]"
+              style={{ top: "50%", left: "50%", transform: "translate(-50%,-50%) translateX(168px)" }}
+            />
+          </div>
+
+          {/* Símbolo animado */}
+          <div className="relative z-10">
+            <MagentsSimbol className="w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 drop-shadow-[0_0_80px_rgba(36,150,184,0.4)]" />
           </div>
 
           {/* Card flutuante — topo direita */}

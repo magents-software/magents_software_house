@@ -1,10 +1,21 @@
-export default function MagentsLogo({ className = "" }: { className?: string }) {
+import Image from "next/image";
+
+// aspect ratio: 584 × 124
+interface Props {
+  height?: number;
+  className?: string;
+}
+
+export default function MagentsLogo({ height = 28, className = "" }: Props) {
+  const width = Math.round(height * (584 / 124));
   return (
-    <span
-      className={`font-black tracking-tight text-gradient ${className}`}
-      style={{ fontFamily: "'Arial Black', 'Arial Bold', Arial, sans-serif" }}
-    >
-      MAGENTS
-    </span>
+    <Image
+      src="/magents-logotipo-gradiente.svg"
+      alt="Magents"
+      width={width}
+      height={height}
+      className={className}
+      priority
+    />
   );
 }
