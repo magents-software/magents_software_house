@@ -64,8 +64,8 @@ export default function MagentsSimbol({ className, style }: Props) {
           .${g}-l2 { stroke-width:1.9;  stroke-dasharray:44.4; animation:${g}-dl2 3.5s linear infinite; }
           .${g}-l3 { stroke-width:1.9;  stroke-dasharray:44.4; animation:${g}-dl3 3.5s linear infinite; }
           .${g}-l4 { stroke-width:1.9;  stroke-dasharray:69.1; animation:${g}-dl4 3.5s linear infinite; }
-          .${g}-l5 { stroke-width:1.33; stroke-dasharray:52;   animation:${g}-dl5 3.5s linear infinite; }
-          .${g}-l6 { stroke-width:1.33; stroke-dasharray:76;   animation:${g}-dl6 3.5s linear infinite; }
+          .${g}-l5 { stroke-width:1.1; animation:${g}-dl5 3.5s linear infinite; }
+          .${g}-l6 { stroke-width:1.1; animation:${g}-dl6 3.5s linear infinite; }
 
           /* dots */
           .${g}-dot { fill:url(#${g}); transform-box:fill-box; transform-origin:center; }
@@ -117,16 +117,16 @@ export default function MagentsSimbol({ className, style }: Props) {
             100%     { stroke-dashoffset:0; opacity:0; }
           }
           @keyframes ${g}-dl5 {
-            0%,42.9% { stroke-dashoffset:52; opacity:0.5; }
-            52.9%    { stroke-dashoffset:0;  opacity:0.5; }
-            80%      { stroke-dashoffset:0;  opacity:0.5; }
-            100%     { stroke-dashoffset:0;  opacity:0; }
+            0%,42.9% { opacity:0; }
+            52.9%    { opacity:0.85; }
+            80%      { opacity:0.85; }
+            100%     { opacity:0; }
           }
           @keyframes ${g}-dl6 {
-            0%,50% { stroke-dashoffset:76; opacity:0.5; }
-            61.4%  { stroke-dashoffset:0;  opacity:0.5; }
-            80%    { stroke-dashoffset:0;  opacity:0.5; }
-            100%   { stroke-dashoffset:0;  opacity:0; }
+            0%,50%  { opacity:0; }
+            61.4%   { opacity:0.85; }
+            80%     { opacity:0.85; }
+            100%    { opacity:0; }
           }
 
           /* ══ DOT KEYFRAMES ══ */
@@ -225,8 +225,8 @@ export default function MagentsSimbol({ className, style }: Props) {
         <line className={`${g}-l2`} x1="34" y1="26" x2="60" y2="62" style={{ strokeWidth: 7 }} />
         <line className={`${g}-l3`} x1="60" y1="62" x2="86" y2="26" style={{ strokeWidth: 7 }} />
         <line className={`${g}-l4`} x1="86" y1="26" x2="98" y2="94" style={{ strokeWidth: 7 }} />
-        <line className={`${g}-l5`} x1="34" y1="26" x2="86" y2="26" style={{ strokeWidth: 5 }} />
-        <line className={`${g}-l6`} x1="22" y1="94" x2="98" y2="94" style={{ strokeWidth: 5 }} />
+        <line className={`${g}-l5`} x1="34" y1="26" x2="86" y2="26" style={{ strokeWidth: 3 }} />
+        <line className={`${g}-l6`} x1="22" y1="94" x2="98" y2="94" style={{ strokeWidth: 3 }} />
       </g>
 
       {/* ── 3. Crisp lines ── */}

@@ -1,3 +1,6 @@
+import { Reveal, Stagger, StaggerItem } from "./fx/Reveal";
+import TiltCard from "./fx/TiltCard";
+
 const services = [
   {
     icon: (
@@ -63,22 +66,24 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="servicos" className="bg-zinc-950 py-28 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+    <section id="servicos" className="bg-zinc-950 py-28 px-6 relative overflow-hidden">
+      {/* Auroras de fundo */}
+      <div className="aurora w-120 h-120 -top-40 -left-40 bg-brand-700/20" />
+      <div className="aurora w-100 h-100 bottom-0 -right-32 bg-brand-500/10" style={{ animationDelay: "-9s" }} />
+
+      <div className="max-w-6xl mx-auto relative z-10">
+        <Reveal className="text-center mb-16">
           <span className="text-brand-400 text-sm font-semibold uppercase tracking-widest">O que fazemos</span>
           <h2 className="mt-3 text-3xl sm:text-5xl font-bold text-white">Nossos Serviços</h2>
           <p className="mt-4 text-zinc-400 max-w-xl mx-auto">
             Do conceito à produção, cobrimos toda a cadeia de desenvolvimento de software.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Stagger className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((s) => (
-            <div
-              key={s.title}
-              className="group card-hover glass rounded-2xl p-7 border border-zinc-800/60 hover:border-brand-600/40 transition-all duration-300"
-            >
+            <StaggerItem key={s.title}>
+              <TiltCard className="group relative h-full glass rounded-2xl p-7 border border-zinc-800/60 hover:border-brand-600/40 transition-colors duration-300">
               {/* Icon com gradiente */}
               <div className={`w-14 h-14 rounded-2xl bg-linear-to-br ${s.gradient} flex items-center justify-center mb-6 shadow-lg shadow-brand-600/20 group-hover:shadow-brand-500/30 transition-shadow duration-300`}>
                 <div className="text-white">
@@ -93,9 +98,10 @@ export default function Services() {
 
               {/* Linha decorativa no hover */}
               <div className="mt-5 h-px w-0 group-hover:w-full bg-linear-to-r from-brand-600 to-brand-400 transition-all duration-500" />
-            </div>
+              </TiltCard>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

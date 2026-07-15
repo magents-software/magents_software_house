@@ -1,3 +1,18 @@
+import Counter from "./fx/Counter";
+import { Reveal, Stagger, StaggerItem } from "./fx/Reveal";
+import Typewriter from "./fx/Typewriter";
+
+const codeSnippet = `// Construímos software com propósito
+
+const project = await Magents.create({
+  name: "Seu Próximo Projeto",
+  stack: ["React", "Node.js", "AWS"],
+  methodology: "Agile",
+});
+
+const result = await project.deploy();
+// → Success! 98% satisfaction rate`;
+
 const stats = [
   {
     value: "98%",
@@ -42,7 +57,7 @@ export default function About() {
     <section id="sobre" className="bg-zinc-900 py-28 px-6">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
         {/* Text */}
-        <div>
+        <Reveal>
           <span className="text-brand-400 text-sm font-semibold uppercase tracking-widest">Sobre nós</span>
           <h2 className="mt-3 text-3xl sm:text-5xl font-bold text-white">
             Código limpo. Resultados reais.
@@ -57,24 +72,24 @@ export default function About() {
             Cada projeto recebe dedicação total da nossa equipe, do planejamento ao deploy e além.
           </p>
 
-          {/* Stats com ícones */}
-          <div className="mt-10 grid grid-cols-2 gap-4">
+          {/* Stats com ícones e contadores animados */}
+          <Stagger className="mt-10 grid grid-cols-2 gap-4">
             {stats.map((s) => (
-              <div key={s.label} className="flex items-center gap-3 glass rounded-xl p-4 border border-zinc-800/60">
+              <StaggerItem key={s.label} className="flex items-center gap-3 glass rounded-xl p-4 border border-zinc-800/60">
                 <div className="w-10 h-10 rounded-lg bg-linear-to-br from-brand-600 to-brand-500 flex items-center justify-center text-white shrink-0 shadow-md shadow-brand-600/20">
                   {s.icon}
                 </div>
                 <div>
-                  <div className="text-xl font-bold text-white leading-none">{s.value}</div>
+                  <Counter value={s.value} className="text-xl font-bold text-white leading-none block" />
                   <div className="text-xs text-zinc-500 mt-0.5">{s.label}</div>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
-        </div>
+          </Stagger>
+        </Reveal>
 
         {/* Visual - code snippet card */}
-        <div className="relative">
+        <Reveal delay={0.15} className="relative">
           <div className="glass rounded-2xl overflow-hidden border border-zinc-700/40">
             <div className="flex items-center gap-2 px-5 py-3 border-b border-zinc-700/50 bg-zinc-800/30">
               <div className="w-3 h-3 rounded-full bg-red-400" />
@@ -82,21 +97,13 @@ export default function About() {
               <div className="w-3 h-3 rounded-full bg-green-400" />
               <span className="ml-3 text-xs text-zinc-500 font-mono">app.ts</span>
             </div>
-            <pre className="p-6 text-xs sm:text-sm font-mono text-zinc-300 leading-relaxed overflow-x-auto">
-{`// Construímos software com propósito
-
-const project = await Magents.create({
-  name: "Seu Próximo Projeto",
-  stack: ["React", "Node.js", "AWS"],
-  methodology: "Agile",
-});
-
-const result = await project.deploy();
-// → Success! 98% satisfaction rate`}
-            </pre>
+            <Typewriter
+              text={codeSnippet}
+              className="p-6 text-xs sm:text-sm font-mono text-zinc-300 leading-relaxed overflow-x-auto min-h-64"
+            />
           </div>
           <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-brand-600 rounded-2xl opacity-20 blur-2xl" />
-        </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -1,3 +1,6 @@
+import { Reveal, Stagger, StaggerItem } from "./fx/Reveal";
+import TiltCard from "./fx/TiltCard";
+
 const projects = [
   {
     title: "Bless Eventos",
@@ -59,21 +62,19 @@ export default function Portfolio() {
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}
-        <div className="text-center mb-16">
+        <Reveal className="text-center mb-16">
           <span className="text-brand-400 text-sm font-semibold uppercase tracking-widest">Projetos</span>
           <h2 className="mt-3 text-3xl sm:text-5xl font-bold text-white">Portfólio Selecionado</h2>
           <p className="mt-4 text-zinc-400 max-w-xl mx-auto">
             Soluções reais entregues para clientes reais. Do MVP à escala.
           </p>
-        </div>
+        </Reveal>
 
         {/* Grid */}
-        <div className="grid sm:grid-cols-2 gap-6">
+        <Stagger className="grid sm:grid-cols-2 gap-6">
           {projects.map((p) => (
-            <div
-              key={p.title}
-              className="group card-hover rounded-2xl overflow-hidden border border-zinc-700/50 hover:border-brand-600/50 bg-zinc-800/40 transition-all duration-300"
-            >
+            <StaggerItem key={p.title}>
+              <TiltCard className="group relative h-full rounded-2xl overflow-hidden border border-zinc-700/50 hover:border-brand-600/50 bg-zinc-800/40 transition-colors duration-300">
               {/* Topo com gradiente + ícone */}
               <div className={`relative h-44 bg-linear-to-br ${p.color} p-6 flex flex-col justify-between overflow-hidden`}>
                 {/* Padrão de fundo decorativo */}
@@ -116,12 +117,13 @@ export default function Portfolio() {
                 {/* Linha decorativa hover */}
                 <div className="mt-5 h-px w-0 group-hover:w-full bg-linear-to-r from-brand-600 to-brand-400 transition-all duration-500" />
               </div>
-            </div>
+              </TiltCard>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
 
         {/* CTA */}
-        <div className="mt-14 text-center">
+        <Reveal className="mt-14 text-center">
           <a
             href="#contato"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-brand-600/50 text-brand-400 font-semibold text-sm hover:bg-brand-600/10 hover:border-brand-500 transition-all duration-300"
@@ -131,7 +133,7 @@ export default function Portfolio() {
               <path d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
             </svg>
           </a>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

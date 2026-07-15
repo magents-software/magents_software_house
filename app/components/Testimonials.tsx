@@ -1,3 +1,6 @@
+import { Reveal, Stagger, StaggerItem } from "./fx/Reveal";
+import TiltCard from "./fx/TiltCard";
+
 const testimonials = [
   {
     name: "Ana Silva",
@@ -21,16 +24,21 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="bg-zinc-950 py-28 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+    <section className="bg-zinc-950 py-28 px-6 relative overflow-hidden">
+      {/* Auroras de fundo */}
+      <div className="aurora w-110 h-110 -top-30 -right-30 bg-brand-600/15" />
+      <div className="aurora w-90 h-90 -bottom-20 -left-20 bg-brand-400/8" style={{ animationDelay: "-6s" }} />
+
+      <div className="max-w-6xl mx-auto relative z-10">
+        <Reveal className="text-center mb-16">
           <span className="text-brand-400 text-sm font-semibold uppercase tracking-widest">Depoimentos</span>
           <h2 className="mt-3 text-3xl sm:text-5xl font-bold text-white">O que dizem sobre nós</h2>
-        </div>
+        </Reveal>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <Stagger className="grid md:grid-cols-3 gap-6">
           {testimonials.map((t) => (
-            <div key={t.name} className="group card-hover glass rounded-2xl p-7 border border-zinc-800/60 hover:border-brand-600/40 transition-all duration-300 flex flex-col">
+            <StaggerItem key={t.name} className="h-full">
+              <TiltCard className="group relative h-full glass rounded-2xl p-7 border border-zinc-800/60 hover:border-brand-600/40 transition-colors duration-300 flex flex-col">
 
               {/* Aspas decorativas */}
               <div className={`w-10 h-10 rounded-xl bg-linear-to-br ${t.gradient} flex items-center justify-center mb-5 shadow-md shadow-brand-600/20`}>
@@ -65,9 +73,10 @@ export default function Testimonials() {
                   <div className="text-xs text-zinc-500">{t.role}</div>
                 </div>
               </div>
-            </div>
+              </TiltCard>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

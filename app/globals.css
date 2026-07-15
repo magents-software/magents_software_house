@@ -24,6 +24,23 @@
   --animate-fade-up: fadeUp 0.6s ease-out forwards;
   --animate-pulse-slow: pulse-slow 3s ease-in-out infinite;
   --animate-spin-slow: spin-slow 8s linear infinite;
+  --animate-marquee: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+@keyframes aurora-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(60px, -40px) scale(1.15); }
+  66% { transform: translate(-40px, 30px) scale(0.95); }
 }
 
 @keyframes float {
@@ -58,6 +75,38 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  /* Gradiente com brilho que varre o texto continuamente */
+  .text-shimmer {
+    background: linear-gradient(
+      110deg,
+      #1B6563 20%,
+      #2E8998 35%,
+      #7dd6ff 50%,
+      #46A2C6 65%,
+      #1B6563 80%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 5s linear infinite;
+  }
+
+  /* Blobs de luz que derivam lentamente ao fundo das seções */
+  .aurora {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(90px);
+    pointer-events: none;
+    animation: aurora-drift 18s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .text-shimmer, .aurora, .animate-marquee {
+      animation: none;
+    }
   }
 
   .bg-gradient-brand {

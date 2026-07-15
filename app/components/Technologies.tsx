@@ -1,3 +1,10 @@
+import Marquee from "./fx/Marquee";
+import { Reveal, Stagger, StaggerItem } from "./fx/Reveal";
+import TiltCard from "./fx/TiltCard";
+
+const techRow1 = ["React", "Next.js", "TypeScript", "Node.js", "Python", "React Native", "PostgreSQL", "MongoDB"];
+const techRow2 = ["AWS", "GCP", "Azure", "Docker", "Kubernetes", "Supabase", "Stripe", "Redis", "GraphQL"];
+
 const pillars = [
   {
     title: "Frontend",
@@ -67,21 +74,25 @@ export default function Technologies() {
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}
-        <div className="text-center mb-16">
+        <Reveal className="text-center mb-16">
           <span className="text-brand-400 text-sm font-semibold uppercase tracking-widest">Nossa Stack</span>
           <h2 className="mt-3 text-3xl sm:text-5xl font-bold text-white">Tecnologia de Ponta</h2>
           <p className="mt-4 text-zinc-400 max-w-xl mx-auto">
             Escolhemos as melhores ferramentas para cada desafio — sempre com foco em performance, escalabilidade e manutenibilidade.
           </p>
-        </div>
+        </Reveal>
+
+        {/* Ticker de tecnologias */}
+        <Reveal className="mb-16 space-y-4">
+          <Marquee items={techRow1} duration={34} />
+          <Marquee items={techRow2} duration={40} reverse />
+        </Reveal>
 
         {/* Cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Stagger className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {pillars.map((p) => (
-            <div
-              key={p.title}
-              className="group card-hover glass rounded-2xl p-7 border border-zinc-800/60 hover:border-brand-600/40 transition-all duration-300"
-            >
+            <StaggerItem key={p.title}>
+              <TiltCard className="group relative h-full glass rounded-2xl p-7 border border-zinc-800/60 hover:border-brand-600/40 transition-colors duration-300">
               <div className={`w-12 h-12 rounded-xl bg-linear-to-br ${p.gradient} flex items-center justify-center text-white mb-5 shadow-lg shadow-brand-600/20`}>
                 {p.icon}
               </div>
@@ -90,14 +101,17 @@ export default function Technologies() {
               </h3>
               <p className="text-sm text-zinc-400 leading-relaxed">{p.summary}</p>
               <div className="mt-5 h-px w-0 group-hover:w-full bg-linear-to-r from-brand-600 to-brand-400 transition-all duration-500" />
-            </div>
+              </TiltCard>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
 
         {/* Linha de confiança */}
-        <p className="mt-14 text-center text-zinc-500 text-sm">
-          Independente da stack, entregamos código limpo, bem testado e fácil de manter.
-        </p>
+        <Reveal delay={0.2}>
+          <p className="mt-14 text-center text-zinc-500 text-sm">
+            Independente da stack, entregamos código limpo, bem testado e fácil de manter.
+          </p>
+        </Reveal>
       </div>
     </section>
   );

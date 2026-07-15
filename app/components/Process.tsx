@@ -1,3 +1,7 @@
+import DrawLine from "./fx/DrawLine";
+import { Reveal, Stagger, StaggerItem } from "./fx/Reveal";
+import TiltCard from "./fx/TiltCard";
+
 const steps = [
   {
     step: "01",
@@ -62,33 +66,34 @@ export default function Process() {
       <div className="absolute inset-0 bg-linear-to-b from-brand-900/20 to-transparent" />
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="text-center mb-16">
+        <Reveal className="text-center mb-16">
           <span className="text-brand-400 text-sm font-semibold uppercase tracking-widest">Como Trabalhamos</span>
           <h2 className="mt-3 text-3xl sm:text-5xl font-bold text-white">Nosso Processo</h2>
           <p className="mt-4 text-zinc-400 max-w-xl mx-auto">
             Um fluxo testado que reduz riscos, aumenta a velocidade e garante resultados previsíveis.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
-          {steps.map((s, i) => (
-            <div key={s.step} className="group card-hover glass rounded-2xl p-6 text-center border border-zinc-800/60 hover:border-brand-600/40 transition-all duration-300 flex flex-col items-center">
-              {/* Ícone com gradiente */}
-              <div className={`w-12 h-12 rounded-xl bg-linear-to-br ${s.gradient} flex items-center justify-center mb-4 shadow-lg shadow-brand-600/20 text-white`}>
-                {s.icon}
-              </div>
-              {/* Número */}
-              <div className="text-xs font-mono text-brand-400/60 font-semibold mb-1">{s.step}</div>
-              <h3 className="text-sm font-semibold text-white mb-2 group-hover:text-brand-300 transition-colors">{s.title}</h3>
-              <p className="text-xs text-zinc-400 leading-relaxed">{s.description}</p>
+        <div className="relative">
+          {/* Linha conectora que se desenha atrás dos cards (desktop) */}
+          <DrawLine className="hidden lg:block absolute top-1/2 left-4 right-4 h-px bg-linear-to-r from-brand-600/0 via-brand-500/40 to-brand-400/0" />
 
-              {/* Seta conectora (exceto último) */}
-              {i < steps.length - 1 && (
-                <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 text-brand-600/50">
-                </div>
-              )}
-            </div>
-          ))}
+          <Stagger className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            {steps.map((s) => (
+              <StaggerItem key={s.step} className="h-full">
+                <TiltCard className="group relative h-full glass rounded-2xl p-6 text-center border border-zinc-800/60 hover:border-brand-600/40 transition-colors duration-300 flex flex-col items-center">
+                  {/* Ícone com gradiente */}
+                  <div className={`w-12 h-12 rounded-xl bg-linear-to-br ${s.gradient} flex items-center justify-center mb-4 shadow-lg shadow-brand-600/20 text-white`}>
+                    {s.icon}
+                  </div>
+                  {/* Número */}
+                  <div className="text-xs font-mono text-brand-400/60 font-semibold mb-1">{s.step}</div>
+                  <h3 className="text-sm font-semibold text-white mb-2 group-hover:text-brand-300 transition-colors">{s.title}</h3>
+                  <p className="text-xs text-zinc-400 leading-relaxed">{s.description}</p>
+                </TiltCard>
+              </StaggerItem>
+            ))}
+          </Stagger>
         </div>
       </div>
     </section>
